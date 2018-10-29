@@ -44,7 +44,7 @@ rm -f $RECORD_ID_LIST_FILE
 mkdir ${LEALIDNS_ROOT}domains -p
 
 if [[ "$LEALIDNS_FORCE" == "1" ]]; then
-ARG_FORCE="--force-renew"
+ARG_FORCE="--force-renewal"
 fi
 
 if [[ "$LEALIDNS_DRY_RUN" != "1" ]]
@@ -60,7 +60,8 @@ then
         --rsa-key-size $CFG_RSA_KEY_SIZE \
         $CFG_ON_NEW_CERT \
         $ARG_NO_AUTO_UPGRADE \
-        --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh)
+        --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh \
+        --manual-cleanup-hook ${LEALIDNS_ROOT}actions/clean-dns-record.sh)
 else
     echo $CFG_CERTBOT_ROOT/$CFG_CERTBOT_CMD renew \
         --manual \
@@ -73,7 +74,8 @@ else
         --rsa-key-size $CFG_RSA_KEY_SIZE \
         $CFG_ON_NEW_CERT \
         $ARG_NO_AUTO_UPGRADE \
-        --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh
+        --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh \
+        --manual-cleanup-hook ${LEALIDNS_ROOT}actions/clean-dns-record.sh
 fi;
 
 write_log "Details: $CERTBOT_RESULT";

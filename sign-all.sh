@@ -112,7 +112,8 @@ do
             $ARG_DOMAINS \
             $CFG_ON_NEW_CERT \
             $NO_AUTO_UPGRADE \
-            --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh)
+            --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh \
+	        --manual-cleanup-hook ${LEALIDNS_ROOT}actions/clean-dns-record.sh)
     else
         echo $CFG_CERTBOT_ROOT/$CFG_CERTBOT_CMD certonly \
             --manual \
@@ -125,7 +126,8 @@ do
             $ARG_DOMAINS \
             $CFG_ON_NEW_CERT \
             $NO_AUTO_UPGRADE \
-            --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh
+            --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh \
+	        --manual-cleanup-hook ${LEALIDNS_ROOT}actions/clean-dns-record.sh
     fi;
 
     if [[ ! $domain =~ "," ]]; then

@@ -33,17 +33,16 @@ write_log "Domain Record: ${DomainRecord}";
 
 write_log "Target Record: ${API_RR}";
 
-API_RESULT=$(aliyuncli alidns AddDomainRecord \
+API_RESULT=$(aliyun alidns AddDomainRecord \
     --DomainName ${API_DomainName} \
     --Type TXT \
     --RR "${API_RR}" \
-    --Value "${CERTBOT_VALIDATION}" \
-    --output table \
+    --Value "${CERTBOT_VALIDATION}"
 )
 
 write_log "API Result: ${API_RESULT}";
 
-RecordId=$(echo $API_RESULT | grep -P "\|\s+(\d+)\s+\|" -o | grep -P "\d+" -o)
+RecordId=$(echo $API_RESULT | grep -Po '"RecordId":*\K"[^"]*"')
 
 write_log "Record Id: ${RecordId}";
 

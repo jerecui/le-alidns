@@ -53,10 +53,10 @@ find '.' -name '*.sh' -exec chmod 0700 {} \; # 设置 Shell 脚本执行权限
 > 依赖如下组件： (可以通过 initialize-env.sh 自动安装)
 >
 > - Pip
-> - Aliyun CLI 命令行工具
+> - [Aliyun 命令行工具](https://github.com/aliyun/aliyun-cli) (Go版本)
 > - Aliyun AliDNS Python SDK
 
-1.  运行脚本 initialize-env.sh 安装 Python 2.7, PIP, Aliyun-CLI, 
+1.  运行脚本 initialize-env.sh 安装 Python 2.7, PIP, Aliyun-CLI,
     Aliyun-SDK-AliDNS 等组件，并配置 Access-Key 和 Secret-Key。
     > Access-Key 需要 AliyunDNSFullAccess 权限。参考：
     [配置命令行工具和 SDK](https://help.aliyun.com/document_detail/43039.html?spm=a2c4g.11186623.6.550.ap6b0e)。
