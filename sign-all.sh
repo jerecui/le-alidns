@@ -128,7 +128,7 @@ do
             $CFG_ON_NEW_CERT \
             $NO_AUTO_UPGRADE \
             --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh \
-            --manual-cleanup-hook ${LEALIDNS_ROOT}actions/clean-dns-record.sh)
+            --manual-cleanup-hook ${LEALIDNS_ROOT}actions/clean-dns-record.sh
     fi;
 
     if [[ ! $domain =~ "," ]]; then
