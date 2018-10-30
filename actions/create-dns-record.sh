@@ -3,9 +3,8 @@
 declare WRITE_LOG_TARGET=$CFG_LOG_FILE
 
 write_log() {
-
     echo $1;
-    echo $1 >> $WRITE_LOG_TARGET;
+    echo $1 >> "${WRITE_LOG_TARGET}";
 }
 
 if [ -z "$CERTBOT_DOMAIN" ] || [ -z "$CERTBOT_VALIDATION" ]
@@ -46,6 +45,8 @@ RecordId=$(echo $API_RESULT | grep -Po '"RecordId":*\K"[^"]*"' | tr -d "\"")
 
 write_log "Record Id: ${RecordId}";
 
-echo $RecordId >> $RECORD_ID_LIST_FILE
+echo $RecordId >> "${RECORD_ID_LIST_FILE}"
 
 echo ""
+
+sleep 25
