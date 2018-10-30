@@ -42,7 +42,7 @@ API_RESULT=$(aliyun alidns AddDomainRecord \
 
 write_log "API Result: ${API_RESULT}";
 
-RecordId=$(echo $API_RESULT | grep -Po '"RecordId":*\K"[^"]*"')
+RecordId=$(echo $API_RESULT | grep -Po '"RecordId":*\K"[^"]*"' | tr -d "\"")
 
 write_log "Record Id: ${RecordId}";
 

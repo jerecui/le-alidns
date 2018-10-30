@@ -62,6 +62,12 @@ then
         $ARG_NO_AUTO_UPGRADE \
         --manual-auth-hook ${LEALIDNS_ROOT}actions/create-dns-record.sh \
         --manual-cleanup-hook ${LEALIDNS_ROOT}actions/clean-dns-record.sh)
+
+
+    if [[ "$CFG_ON_END" != "" && -x $CFG_ON_END ]]; then
+        write_log "Executing hook[after-cert] ${CFG_ON_END}...";
+        $CFG_ON_END
+    fi;
 else
     echo $CFG_CERTBOT_ROOT/$CFG_CERTBOT_CMD renew \
         --manual \
@@ -80,9 +86,4 @@ fi;
 
 write_log "Details: $CERTBOT_RESULT";
 
-sh ${LEALIDNS_ROOT}actions/clean-dns-record.sh
-
-if [[ "$CFG_ON_END" != "" && -x $CFG_ON_END ]]; then
-    write_log "Executing hook[after-cert] ${CFG_ON_END}...";
-    $CFG_ON_END
-fi;
+rm -f $RECORD_ID_LIST_FILE

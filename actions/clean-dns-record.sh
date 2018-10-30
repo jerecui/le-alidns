@@ -17,12 +17,9 @@ fi
 for RecordId in $RECORD_ID_LIST
 do
 echo "Deleting DNS record of Id ${RecordId}" >> $CFG_LOG_FILE
-API_RESULT=$(aliyun alidns DeleteDomainRecord \
-    --RecordId ${RecordId}
-)
+API_RESULT=$(aliyun alidns DeleteDomainRecord --RecordId ${RecordId})
 
 echo "API Result: ${API_RESULT}" >> $CFG_LOG_FILE
 
 done
 
-rm -f $RECORD_ID_LIST_FILE
